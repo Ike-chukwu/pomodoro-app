@@ -5,7 +5,6 @@ import "./Clock.scss";
 import { AuthContext } from "../../context";
 
 const Clock = (props) => {
-  console.log(props.minutes, props.secondsRemainingRef.current);
   const {
     pomodoroTime,
     setPomodoroTime,
@@ -14,6 +13,7 @@ const Clock = (props) => {
     longBreakTime,
     setLongBreakTime,
   } = useContext(AuthContext);
+
   return (
     <div className="clock">
       <CircularProgressbar
@@ -40,13 +40,13 @@ const Clock = (props) => {
                 props.secondsRemainingRef.current = pomodoroTime * 60;
                 props.setSecondsRemaining(props.secondsRemainingRef.current);
                 props.setShouldRestart(false);
-                return
+                return;
               }
               props.setIsPaused(false);
               props.isPausedRef.current = false;
             }}
           >
-            start
+            {props.shouldRestart ? "Restart" : "start"}
           </p>
         ) : (
           <p

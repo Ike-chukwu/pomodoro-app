@@ -1,15 +1,28 @@
 import React from "react";
 import "./TImingPeriod.scss";
 
-const TimingPeriod = () => {
+const TimingPeriod = (props) => {
+  const periods = ["pomodoro", "short break", "long break"];
+
   return (
     <div className="timing-period">
       <h2 className="heading">pomodoro</h2>
 
       <div className="categories">
-        <div className="category active">pomodoro</div>
-        <div className="category">short break</div>
-        <div className="category">long break</div>
+        {periods.map((period) => {
+          if (props.modeRef.current == period) {
+            return (
+              <div key={period} className="category active">
+                {period}
+              </div>
+            );
+          }
+          return (
+            <div key={period} className="category">
+              {period}
+            </div>
+          );
+        })}
       </div>
     </div>
   );

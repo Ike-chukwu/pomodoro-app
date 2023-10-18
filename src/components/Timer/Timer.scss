@@ -194,6 +194,25 @@
   }
 }
 
+.timer-errorMessage {
+  position: fixed;
+  bottom: -50%;
+  opacity: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  background: white;
+  border-radius: 1rem;
+  padding: 1rem;
+  text-align: center;
+  border-top: 0.4rem solid red;
+  transition: all 0.4s ease-out;
+
+  &.show {
+    bottom: 10%;
+    opacity: 1;
+  }
+}
+
 @media (max-width: 700px) {
   .setting-parent {
     .inner-setting-container {

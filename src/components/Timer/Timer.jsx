@@ -21,6 +21,7 @@ const Timer = () => {
     useState();
 
   const [isPaused, setIsPaused] = useState(true);
+  const [showErrorMessage, setShowErrorMessage] = useState(false);
   const [secondsRemaining, setSecondsRemaining] = useState(0);
   const [mode, setMode] = useState("pomodoro");
   const [shouldRestart, setShouldRestart] = useState(false); // Add restart state
@@ -30,6 +31,10 @@ const Timer = () => {
 
   //function that opens setting modal
   const openSettingModal = () => {
+    if (!isPausedRef.current) {
+      setShowErrorMessage(true);
+      return;
+    }
     setIsSettingOpen(true);
   };
 
@@ -90,7 +95,7 @@ const Timer = () => {
       }
 
       decreaseTime();
-    }, 10);
+    }, 1000);
 
     return () => clearInterval(interval);
   }, [
@@ -139,10 +144,18 @@ const Timer = () => {
     setIsSettingOpen(false);
   };
 
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      setShowErrorMessage(false);
+    }, 3000);
+
+    return () => clearTimeout(timeout);
+  }, [showErrorMessage]);
+
   return (
     <>
       <div className={isSettingOpen ? "timer-parent darken" : "timer-parent"}>
-        <TimingPeriod />
+        <TimingPeriod modeRef={modeRef} />
         <Clock
           totalSecondsInPercentage={totalSecondsInPercentage}
           isPaused={isPaused}
@@ -184,7 +197,13 @@ const Timer = () => {
                   <input
                     type="number"
                     value={pomodoroTime}
-                    onChange={(e) => setPomodoroTime(e.target.value)}
+                    onChange={(e) => {
+                      if (e.target.value <= 1) {
+                        setPomodoroTime(1);
+                        return;
+                      }
+                      setPomodoroTime(e.target.value);
+                    }}
                     className="number-input"
                   />
                 </div>
@@ -193,7 +212,13 @@ const Timer = () => {
                   <input
                     type="number"
                     value={shortBreakTime}
-                    onChange={(e) => setShortBreakTime(e.target.value)}
+                    onChange={(e) => {
+                      if (e.target.value <= 1) {
+                        setShortBreakTime(1);
+                        return;
+                      }
+                      setShortBreakTime(e.target.value);
+                    }}
                     className="number-input"
                   />
                 </div>
@@ -202,7 +227,13 @@ const Timer = () => {
                   <input
                     type="number"
                     value={longBreakTime}
-                    onChange={(e) => setLongBreakTime(e.target.value)}
+                    onChange={(e) => {
+                      if (e.target.value <= 1) {
+                        setLongBreakTime(1);
+                        return;
+                      }
+                      setLongBreakTime(e.target.value);
+                    }}
                     className="number-input"
                   />
                 </div>
@@ -233,6 +264,10 @@ const Timer = () => {
             apply
           </button>
         </div>
+      </div>
+
+      <div className={ showErrorMessage? "timer-errorMessage show" :"timer-errorMessage"}>
+        <h2>You can't access the settings until the timer is complete!</h2>
       </div>
     </>
   );
