@@ -14,18 +14,23 @@
      * https://github.com/kevinsqi/react-circular-progressbar/issues/94
      */
     vertical-align: middle;
+    background-color: #161932;
+    border-radius: 50%;
 }
 
 .CircularProgressbar .CircularProgressbar-path {
     stroke: #3e98c7;
     stroke-linecap: round;
     transition: stroke-dashoffset 0.5s ease 0s;
+    stroke-width: 4px;
 }
 
 .CircularProgressbar .CircularProgressbar-trail {
     stroke: #d6d6d6;
     /* Used when trail is not full diameter, i.e. when props.circleRatio is set */
     stroke-linecap: round;
+    stroke-width: 4px;
+
 }
 
 .CircularProgressbar .CircularProgressbar-text {

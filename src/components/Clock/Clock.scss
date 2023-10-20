@@ -1,22 +1,27 @@
 .clock {
   height: 400px;
   border-radius: 50%;
-  background: #161932;
   width: 400px;
   position: relative;
-  .inner-text {
-    position: absolute;
-    color: white;
-    z-index: 10;
-    top: 60%;
-    text-transform: capitalize;
-    left: 50%;
-    transform: translateX(-50%);
-    
-    .prompt {
-      cursor: pointer;
-      font-size: 2rem;
-      text-transform: uppercase;
+
+  .inner-clock {
+    border: 2.5rem solid #1e213f;
+    border-radius: 50%;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    .inner-text {
+      position: absolute;
+      color: white;
+      z-index: 10;
+      top: 60%;
+      text-transform: capitalize;
+      left: 50%;
+      transform: translateX(-50%);
+
+      .prompt {
+        cursor: pointer;
+        font-size: 2rem;
+        text-transform: uppercase;
+      }
     }
   }
 }

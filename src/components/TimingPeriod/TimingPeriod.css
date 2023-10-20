@@ -1,0 +1,64 @@
+:root {
+  --my-variable: #f87070; /* Define the CSS variable with an initial value */
+}
+
+.timing-period {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5rem;
+}
+.timing-period .heading {
+  font-size: 4rem;
+  color: #d7e0ff;
+}
+.timing-period .categories {
+  width: 450px;
+  height: 50px;
+  display: flex;
+  align-items: flex-start;
+  background: #161932;
+  border-radius: 3rem;
+}
+.timing-period .categories .category {
+  font-size: 1.8rem;
+  color: #d7e0de;
+  width: 300px;
+  height: 100%;
+  border-radius: 3rem;
+  line-height: 50px;
+  text-align: center;
+}
+.timing-period .categories .category.active {
+  background: var(--my-variable);
+  color: black;
+}
+
+@media (max-width: 700px) {
+  .timing-period .heading {
+    font-size: 2.5rem;
+  }
+  .timing-period .categories {
+    width: 320px;
+    height: 40px;
+  }
+  .timing-period .categories .category {
+    width: 200px;
+    font-size: 1.6rem;
+    line-height: 40px;
+  }
+}
+@media (max-width: 280px) {
+  .timing-period .heading {
+    font-size: 2rem;
+  }
+  .timing-period .categories {
+    width: 220px;
+  }
+  .timing-period .categories .category {
+    width: 160px;
+    font-size: 1.2rem;
+  }
+}
+
+/*# sourceMappingURL=TimingPeriod.css.map */

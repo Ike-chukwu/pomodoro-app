@@ -1,8 +1,10 @@
-import React from "react";
-import "./TImingPeriod.scss";
+import React, { useEffect, useRef } from "react";
+import "./TImingPeriod.css";
 
 const TimingPeriod = (props) => {
   const periods = ["pomodoro", "short break", "long break"];
+
+  
 
   return (
     <div className="timing-period">
@@ -12,7 +14,7 @@ const TimingPeriod = (props) => {
         {periods.map((period) => {
           if (props.modeRef.current == period) {
             return (
-              <div key={period} className="category active">
+              <div key={period}  className="category active">
                 {period}
               </div>
             );
